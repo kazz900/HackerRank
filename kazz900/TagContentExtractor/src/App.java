@@ -34,6 +34,7 @@ public class App {
                     tags.add(line.substring(index1, index2 + 1));
                     newStr = line.substring(index2, newStr.length());
                     System.out.println(tags);
+                    //TODO : IMPLEMENT ALGORITHM HERE
                 }
             }
             tempIndex++;
