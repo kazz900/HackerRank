@@ -22,7 +22,7 @@ public class App {
         int testCases = 4;
         int tempIndex = 0;
         while (testCases > 0) {
-            //TODO
+            // TODO
             String line = str[tempIndex].trim(); // ^[a-z] != bc
             Pattern pattern = Pattern.compile("(<[a-zA-Z\\d\\s]+>)+[\\w\\s\\d]+(</[a-zA-Z\\d\\s]+>)+");
             Matcher m1 = pattern.matcher(line);
@@ -96,3 +96,4 @@ public class App {
         // "").replaceAll("(</[a-zA-Z\\d\\s]+>)+", "");
         // // System.out.println("match : " + t1);
     }
+}
