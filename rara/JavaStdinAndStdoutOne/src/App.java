@@ -10,6 +10,7 @@ public class App {
         };
         for (int i = 0; i < stdin.length; i++) {
             System.out.println(stdin[i]);
+            //asdf
         }
     }
 }
