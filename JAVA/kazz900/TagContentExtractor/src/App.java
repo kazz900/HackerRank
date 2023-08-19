@@ -51,64 +51,16 @@ public class App {
                 int testCases = str.length;
                 int tempIndex = 0;
                 while (testCases > 0) {
+                        // 1. GET HTML
                         String line = str[tempIndex].trim();
                         Matcher m1 = pattern.matcher(line);
-                        // First check if this line is a valid HTML
-                        if(!line.matches(
-                                "((<[a-zA-Z\\d\\w\\s]+>)+([\\d\\w\\s]+)+(<[a-zA-Z\\d\\w\\s]+>)+([\\d\\w\\s]+)+(</[a-zA-Z\\d\\w\\s]+>)+)|((<[a-zA-Z\\d\\w\\s]+>)+[\\d\\w\\s]+(</[a-zA-Z\\d\\w\\s]+>)+)|(([^\\n][\\d\\w\\s~()&%{}`])+>)")){
-                                System.out.println("Not valid : " + line);
-                        }
-                        while (m1.find()) {
-                                // GET FIRST HTML
-                                HTML = m1.group();
-                                // Analyze HTML to find out if we continue to extract content or not
-                                Pattern patternToRemove = Pattern
-                                                .compile("((<[a-zA-Z\\d\\s]+>)+([\\w\\d\\s]+)+(<[a-zA-Z\\d\\s]+>)+)|(([^\\n][\\d\\w\\s~()&%{}`])+>)");
-                                Matcher matchToRemove = patternToRemove.matcher(HTML);
-                                if (matchToRemove.find()) {
-                                        System.out.println("HTML TO REMOVE : " + HTML);
-                                        HTML = HTML.replaceFirst("(([^\\n][\\d\\w\\s~()&%{}`])+>)", "");
-                                }
-                                // GET OPENING AND CLOSING TAGS IF EXIST
-                                Matcher openingTagMatcher = openingTagsPattern.matcher(HTML);
-                                Matcher closingTagMatcher = closingTagsPattern.matcher(HTML);
-                                if (openingTagMatcher.find()) {
-                                        openingTagStr = openingTagMatcher.group().replaceAll("[/<>]+", "").trim();
-                                }
-                                if (closingTagMatcher.find()) {
-                                        closingTagStr = closingTagMatcher.group().replaceAll("[/<>]+", "").trim();
-                                }
-                                if (openingTagStr.length() != closingTagStr.length()) {
-                                        // System.out.println("None");
-                                        break;
-                                }
-                                if (!openingTagStr.equals(closingTagStr)) {
-                                        // System.out.println("None");
-                                        break;
-                                }
-                                subStr = line.substring(HTML.length(), line.length());
-                                content = HTML
-                                                .replaceAll("((<[a-zA-Z\\d\\s]+>)+([\\w\\d\\s]+)+(<[a-zA-Z\\d\\s]+>)+)|((<[a-zA-Z\\d\\s]+>)+)",
-                                                                "")
-                                                .replaceAll("((</[a-zA-Z\\d\\s]+>)+([\\w\\d\\s]+)+(</[a-zA-Z\\d\\s]+>)+)|(</[a-zA-Z\\d\\s]+>)+",
-                                                                "")
-                                                .replaceAll("[/<>]+", "")
-                                                .trim();
-                                System.out.println(content);
-                                m1 = pattern.matcher(subStr);
-                                if (!subStr.isEmpty() && m1.find()) {
-                                        content = subStr
-                                                        .replaceAll(
-                                                                        "((<[a-zA-Z\\d\\s]+>)+([\\w\\d\\s]+)+(<[a-zA-Z\\d\\s]+>)+)|((<[a-zA-Z\\d\\s]+>)+)",
-                                                                        "")
-                                                        .replaceAll(
-                                                                        "((</[a-zA-Z\\d\\s]+>)+([\\w\\d\\s]+)+(</[a-zA-Z\\d\\s]+>)+)|(</[a-zA-Z\\d\\s]+>)+",
-                                                                        "")
-                                                        .replaceAll("[/<>]+", "")
-                                                        .trim();
-                                        // System.out.println(content);
-                                }
-                        }
+                        HTML = line;
+                        // 2. REMOVE UNECESSARY TEXT
+                        // 3. FIND TAG
+                        // 4. TAG VALIDATION
+                        // 5. STDOUT CONTENT
+                        // 6. FIND OUT IF HTML HAS MORE CONTENT TO STDOUT
+                        // 7. BREAK WHEN THERE IS NO MORE VALID TAG
                         tempIndex++;
                         testCases--;
                 }
