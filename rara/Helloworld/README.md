@@ -1,4 +1,0 @@
-## HACKERRANK 문제 이름
-
-## HACKERRANK 문제 URL
-
